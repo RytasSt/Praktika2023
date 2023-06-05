@@ -1,0 +1,21 @@
+.homeBackground {
+    // background-color: #ccc;
+    height: 100vh;
+    background-image: url("../assets/PH_hero1.png");
+    background-size: cover;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    
+}
+.homeTitle {
+    // margin: 0 auto;
+    color: #fff;
+    font-size: 4rem;
+    align-self: center;
+    justify-self: center;
+    padding-bottom: 400px;
+}
+body {
+    // overflow: hidden;
+}
