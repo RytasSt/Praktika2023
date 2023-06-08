@@ -11,6 +11,7 @@ import MainPage from "./components/MainPage";
 import AddMenu from "./components/AddMenu";
 import AddMeals from "./components/AddMeals";
 import EditMeals from "./components/editMeals";
+import EditMenu from "./components/EditMenu";
 // import AddMenuAndMeals from "./components/AddMenuAndMeals"
 import RegisterForm from "./components/RegisterForm";
 import LoginPage from "./components/LoginPage";
@@ -42,6 +43,7 @@ function App() {
           <>
               <Route path="addmenu" element={<AddMenu/>} />
               <Route path="editmeals/:id" element={<EditMeals/>} />
+              <Route path="editmenu/:id" element={<EditMenu/>} />
               <Route path="addmeals" element={<AddMeals/>} />
               {/* <Route path="/add-menu-and-meals" element={<AddMenuAndMeals />} /> */}
                 {/* <Route path="categorycreate" element={<CategoryCreate />} />
