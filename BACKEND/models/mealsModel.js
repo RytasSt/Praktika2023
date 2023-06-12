@@ -9,6 +9,9 @@ const mealsSchema = mongoose.Schema({
   },
   menu: {
     type: String
+  },
+  id: {
+    type: Number
   }
 });
 

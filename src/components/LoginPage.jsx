@@ -27,7 +27,7 @@ function LoginPage() {
   });
   return (
     <div className="loginPage">
-      <h3>Prisijungti</h3>
+      <h3>Login</h3>
       <form onSubmit={formik.handleSubmit} className="loginForm">
         <input
           type="email"

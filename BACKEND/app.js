@@ -3,6 +3,9 @@ const bodyParser = require("body-parser");
 const mealsRouter = require("./routes/mealsRoutes");
 const menuRouter = require("./routes/menuRoutes");
 const userRouter = require("./routes/userRoutes");
+const ordersRouter = require("./routes/ordersRoutes");
+// const confirmedOrdersRouter = require("./routes/confirmedOrdersRoutes");
+
 const cors = require('cors');
 const cookieParser = require("cookie-parser")
 
@@ -24,6 +27,8 @@ app.use(cookieParser());
 app.use("/meals", mealsRouter);
 app.use("/menu", menuRouter);
 app.use("/users", userRouter);
+app.use("/orders", ordersRouter);
+// app.use("/confirmedorders", confirmedOrdersRouter);
 
 
 

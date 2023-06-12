@@ -27,6 +27,7 @@ function Navigation() {
           <Nav className="me-auto">
             <Link className="p-2" to="/">Home</Link>
             <Link className="p-2" to="/menu">Menu</Link>
+            <Link className="p-2" to="/cart">Cart</Link>
             {/* <Link className="p-2" to="/create">Create Employee</Link>{" "} */}
           </Nav>
           <Button onClick={logOut}>
@@ -48,6 +49,14 @@ function Navigation() {
                 >
                   <Button className="w-25 mx-auto gradient-class">
                     Add Meals
+                  </Button>
+                </Link>
+                <Link
+                  to="/orders/"
+                  className="mb-2 w-25 mx-auto text-decoration-none"
+                >
+                  <Button className="w-25 mx-auto gradient-class">
+                  orders
                   </Button>
                 </Link>
               </>

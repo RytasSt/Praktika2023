@@ -1,12 +1,12 @@
-const Meals = require("../models/mealsModel");
+const Orders = require("../models/ordersModel");
 const mongoose = require('mongoose');
 
-exports.getMeals = (req, res) => {
+exports.getOrders = (req, res) => {
 //   const userEmail = req.email;
 
     try {
-        // Meals.find({ email: userEmail })
-        Meals.find(req.query)
+        // Menu.find({ email: userEmail })
+        Orders.find(req.query)
         .then((doc) => {
             res.status(200).json(doc);
         })
@@ -16,15 +16,15 @@ exports.getMeals = (req, res) => {
     }
 };
 
-exports.getMealsById = (req, res) => {
+exports.getOrderById = (req, res) => {
   let { id } = req.params;
   if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(404).json({ message: 'Invalid meals ID' });
+    return res.status(404).json({ message: 'Invalid order ID' });
   }
-  Meals.findById(id)
+  Orders.findById(id)
     .then((doc) => {
       if (!doc) {
-        return res.status(404).json({ message: 'Meals not found' });
+        return res.status(404).json({ message: 'Order not found' });
       }
       res.status(200).json(doc);
     })
@@ -32,18 +32,18 @@ exports.getMealsById = (req, res) => {
 };
 
 
-exports.deleteMeals = (req, res) => {
+exports.deleteOrder = (req, res) => {
     let { id } = req.params;
-    Meals.findByIdAndDelete(id)
+    Orders.findByIdAndDelete(id)
     .then((doc) => {
         res.status(200).json(doc);
     })
     .catch((error) => res.status(404).json(error));
 };
 
-exports.editMeals = (req, res) => {
+exports.editOrder = (req, res) => {
     let { id } = req.params;
-    Meals.findByIdAndUpdate(id, req.body, {
+    Orders.findByIdAndUpdate(id, req.body, {
         new: true,
         runValidators: true,
     })
@@ -53,18 +53,17 @@ exports.editMeals = (req, res) => {
     .catch((error) => res.status(404).json(error));
 };
 
-exports.createMeals = (req, res) => {
-    let { title, description, menu, id } = req.body;
-    // let email = req.email;
+exports.createOrders = (req, res) => {
+    let { cartItems, status, name } = req.body;
+    // let name = req.name;
 
-    let meals = new Meals({
-      title: title,
-      description: description,
-      menu: menu,
-      id: id
+    let orders = new Orders({
+      cartItems: cartItems,
+      status: status,
+      name: name
     //   email: email
     });
-    meals.save().then((doc) => {
+    orders.save().then((doc) => {
       res.status(200).json(doc);
     });
   };
