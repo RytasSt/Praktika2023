@@ -26,8 +26,8 @@ app.use(cookieParser());
 
 app.use("/meals", mealsRouter);
 app.use("/menu", menuRouter);
-app.use("/users", userRouter);
 app.use("/orders", ordersRouter);
+app.use("/users", userRouter);
 // app.use("/confirmedorders", confirmedOrdersRouter);
 
 
