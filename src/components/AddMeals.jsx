@@ -10,6 +10,7 @@ const menuURL = "http://localhost:3000/menu";
 
 function AddMeals() {
   const [submitted, setSubmitted] = useState(false);
+  const [counter, setCounter] = useState(0);
   const navigate = useNavigate();
   const [menu, setMenu] = useState([]);
 
@@ -17,6 +18,15 @@ function AddMeals() {
       axios
           .get(menuURL)
           .then((response) => setMenu(response.data))
+          .catch((error) => console.log(error));
+          axios
+          .get(mealURL)
+          .then((response) => {
+            const meals = response.data;
+            if (meals.length > 0) {
+              setCounter(meals.length);
+            }
+          })
           .catch((error) => console.log(error));
   }, [])
 
@@ -32,7 +42,8 @@ function AddMeals() {
           initialValues={{
             title: "",
             description: "",
-            menu: ""
+            menu: "",
+            id: counter + 1
           }}
           validationSchema={Yup.object({
             title: Yup.string()
@@ -48,6 +59,7 @@ function AddMeals() {
             console.log(values);
             resetForm();
             setSubmitted(true);
+            setCounter(counter + 1);
           }}
         >
           {({

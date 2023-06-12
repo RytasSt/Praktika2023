@@ -66,7 +66,7 @@ function EditMenu() {
                 updateMealMenuTitles(values.title);
               })
               .catch((error) => console.log(error));
-            console.log(values);
+            // console.log(values);
             resetForm();
             setSubmitted(true);
           }}

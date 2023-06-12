@@ -28,7 +28,7 @@ function AddMenu() {
               .post(menuURL, values)
               .then((response) => response.data)
               .catch((error) => console.log(error));
-            console.log(values);
+            // console.log(values);
             resetForm();
             setSubmitted(true);
           }}
