@@ -15,6 +15,25 @@ function Navigation() {
     await axios.get("http://localhost:3000/users/logout");
     getLoggedIn();
   };
+
+  const renderAdminLinks = () => {
+    if (isAdmin) {
+      return (
+        <>
+          <Link to="/addmenu/" className="nav-link">
+            Add Menu
+          </Link>
+          <Link to="/addmeals/" className="nav-link">
+            Add Meals
+          </Link>
+          <Link to="/orders/" className="nav-link">
+            Orders
+          </Link>
+        </>
+      );
+    }
+    return null;
+  };
   return (
     <>
       <Navbar bg="dark" variant="dark" className="shadow">
@@ -29,38 +48,11 @@ function Navigation() {
             <Link className="p-2" to="/menu">Menu</Link>
             <Link className="p-2" to="/cart">Cart</Link>
             {/* <Link className="p-2" to="/create">Create Employee</Link>{" "} */}
+            {renderAdminLinks()}
           </Nav>
           <Button onClick={logOut}>
             Logout
           </Button>
-          {isAdmin && (
-              <>
-                <Link
-                  to="/addmenu/"
-                  className="mb-2 w-25 mx-auto text-decoration-none"
-                >
-                  <Button className="w-25 mx-auto gradient-class">
-                    Add Menu
-                  </Button>
-                </Link>
-                <Link
-                  to="/addmeals/"
-                  className="mb-2 w-25 mx-auto text-decoration-none"
-                >
-                  <Button className="w-25 mx-auto gradient-class">
-                    Add Meals
-                  </Button>
-                </Link>
-                <Link
-                  to="/orders/"
-                  className="mb-2 w-25 mx-auto text-decoration-none"
-                >
-                  <Button className="w-25 mx-auto gradient-class">
-                  orders
-                  </Button>
-                </Link>
-              </>
-            )}
         </Container>
       </Navbar>
     </>

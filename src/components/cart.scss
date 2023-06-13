@@ -11,4 +11,15 @@
 }
 .countHandler {
   display: flex;
+  // width: 50;
+}
+.orderButton{
+  margin: 0 auto;
+  display: block;
+}
+
+.orderSuccess {
+  color: aqua;
+  font-size: 2rem;
+  width: 0 auto;
 }
