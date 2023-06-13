@@ -8,6 +8,7 @@ const ordersURL = "http://localhost:3000/orders";
 function Cart() {
   const [meals, setMeals] = useState([]);
   const [userData, setUserData] = useState({});
+  const [orderSent, setOrderSent] = useState(false);
   const { cartItems, addToCart, removeFromCart, updateCartItemCount } = useContext(ShopContext)
 
   useEffect(() => {
@@ -29,38 +30,53 @@ function Cart() {
       // customerName: customerName,
     };
     axios
-    .post(ordersURL, orderData)
-    .then((response) => response.data)
-    .catch((error) => console.log(error));
+      .post(ordersURL, orderData)
+      .then((response) => {
+        setOrderSent(true);
+        console.log(response.data);
+      })
+      .catch((error) => {
+        setOrderSent(false);
+        console.log(error);
+      });
   }
   return (
     <>
       <div className="cart">
         <div>
-          <h1>Cart items</h1>
         </div>
-        <div className="cartContainer">
-          {meals.map((meal, index) => {
-            if (cartItems[meal._id] !== 0) {
-              return (
-                <div className="cartItem" key={index}>
-                  <div>{meal.title}</div>
-                  <div>{meal.description}</div>
-                  <div>{meal.menu}</div>
-                  <div className="countHandler">
-                    <button onClick={() => removeFromCart(meal._id)}>-</button>
-                    <input value={cartItems[meal._id]} onChange={(e) => updateCartItemCount(Number(e.target.value), meal._id)} />
-                    <button onClick={() => addToCart(meal._id)}>+</button>
-                  </div>
+        {/* <div className="cartContainer"> */}
+        <div className="menuWrapper">
+          <div className="menuTitle"><p>Cart items</p></div>
+          <div className="menuContainer">
+            {meals.map((meal, index) => {
+              if (cartItems[meal._id] !== 0) {
+                return (
+                  <div className="menuCard" key={index}>
+                    <div>{meal.title}</div>
+                    <div>{meal.description}</div>
+                    <div>{meal.menu}</div>
+                    <div className="countHandler">
+                      <button onClick={() => removeFromCart(meal._id)}>-</button>
+                      <input style={{ width: "40px" }} value={cartItems[meal._id]} onChange={(e) => updateCartItemCount(Number(e.target.value), meal._id)} />
+                      <button onClick={() => addToCart(meal._id)}>+</button>
+                    </div>
 
-                </div>
-              )
-            }
-          })}
+                  </div>
+                )
+              }
+            })}
+          </div>
+          <div className={`cart`}>
+            <div>
+              <button className="orderButton" onClick={placeOrder}>
+                Order
+              </button>
+              {orderSent && <p className="orderSuccess">Order successfully sent!</p>}
+            </div>
+          </div>
         </div>
-      </div>
-      <div>
-        <button onClick={placeOrder}>Order</button>
+        {/* </div> */}
       </div>
     </>
   );

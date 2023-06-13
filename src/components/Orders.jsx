@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { deleteHandler } from "../../services/deleteHandler copy";
+import "./orders.scss"
 const mealsURL = "http://localhost:3000/meals";
 const ordersURL = "http://localhost:3000/orders";
 function Orders() {
@@ -76,7 +77,7 @@ function Orders() {
   
     // Render the order card
     return (
-      <div key={_id} className="order-card">
+      <div key={_id} className="orderCard">
         <h3>Order ID: {_id}</h3>
         <div>Order by user: {name}</div>
         status: {status}
@@ -97,7 +98,7 @@ function Orders() {
 
       <div className="menuWrapper">
         <div className="menuTitle"><p>Meals</p></div>
-        <div className="menuContainer">
+        <div className="ordersContainer">
           {orderjsx}
         </div>
         <div>
